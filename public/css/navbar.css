@@ -1,0 +1,43 @@
+.bg-white {
+    background-color: #f9faf5 !important;
+    color: black!important;
+}
+.navbar-brand{
+    color: #294eb1!important;
+}
+.nav-item a{
+    color: #294eb1!important;
+}
+@media (min-width: 1000px) {
+    .nav-item a:hover{
+        transform: scale(1.2,1.2);
+    }
+}
+@media (max-width: 1199px) {
+    .nav-item a:hover{
+        padding-left: 10px!important;
+    }
+}
+
+.navbar-toggler{
+    font-size: 175%!important;
+    padding: 0;
+    margin:0;
+}
+.bg-blue a{
+    color:#80b3ff;
+}
+.bg-blue{
+    background: rgba(0,51,204,.9);
+    color: whitesmoke;
+}
+.btn-outline-blue {
+    color: #2c5af4;
+    border-color: #284c9b;
+}
+
+.btn-outline-blue:hover {
+    color: #fff;
+    background-color: #294eb1;
+    border-color: #294eb1;
+}

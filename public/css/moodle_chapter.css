@@ -1,0 +1,13 @@
+.img-thumbnail:hover {
+    padding: 0.25rem;
+    background-color: #abe6da;
+    border: 0.125rem solid #dee2e6;
+    border-radius: 0.5rem;
+    max-width: 100%;
+    height: auto;
+}
+
+.img-thumbnail.selected{
+    background-color: #007bff;
+}
+

@@ -1,0 +1,181 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset("css/landing-page.css") }}">
+{% endblock %}
+{% block title %}Niners{% endblock %}
+
+{% block body %}
+    <!-- Masthead -->
+    <header  id="intro"class="masthead bg-info text-white text-center">
+        <div class="container d-flex align-items-center flex-column vh-100">
+
+            <!-- Masthead Image -->
+            <img class="masthead-avatar mb-5" src="img/logo.svg" alt="">
+
+            <!-- Masthead Heading -->
+            <h1 class="masthead-heading text-uppercase mb-0">Niners</h1>
+
+            <!-- Masthead Subheading -->
+            <p class="masthead-subheading mb-0">Výukový roboti</p>
+
+        </div>
+    </header>
+
+    <!-- Portfolio Section -->
+    <section class="page-section portfolio" id="portfolio">
+        <div class="container">
+            <!--Apps Grid Items -->
+            <div class="row">
+
+                <!-- Garage -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal1">
+                        <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                            <div class="portfolio-item-caption-content text-center text-white">
+                                <i class="fas fa-warehouse fa-3x"></i>
+                                <h3>Garáž</h3>
+                            </div>
+                        </div>
+                        <img class="img-fluid" src="img/portfolio/cabin.png" alt="">
+                    </div>
+                </div>
+
+                <!--Moodle-->
+                <div class="col-md-6 col-lg-4">
+                    <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal2">
+                        <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                            <div class="portfolio-item-caption-content text-center text-white">
+                                <i class="fas fa-book-open fa-3x"></i>
+                                <h3>Moodle</h3>
+                            </div>
+                        </div>
+                        <img class="img-fluid" src="img/portfolio/cake.png" alt="">
+                    </div>
+                </div>
+
+                <!-- Profile-->
+                <div class="col-md-6 col-lg-4">
+                    <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal3">
+                        <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                            <div class="portfolio-item-caption-content text-center text-white">
+                                <i class="fas fa-user fa-3x"></i>
+                                <h3>Profil</h3>
+                            </div>
+                        </div>
+                        <img class="img-fluid" src="img/portfolio/circus.png" alt="">
+                    </div>
+                </div>
+            </div>
+            <!-- /.row -->
+
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="page-section bg-blue text-white mb-0" id="about">
+        <div class="container">
+
+            <!-- About Section Heading -->
+            <h2 class="page-section-heading text-center text-uppercase text-white">About</h2>
+
+            <!-- Icon Divider -->
+            <div class="divider-custom divider-light">
+                <div class="divider-custom-line"></div>
+                <div class="divider-custom-icon">
+                    <i class="fas fa-star"></i>
+                </div>
+                <div class="divider-custom-line"></div>
+            </div>
+
+            <!-- About Section Content -->
+            <div class="row">
+                <div class="col-lg-4 ml-auto">
+                    <p class="lead">Some header</p>
+                </div>
+                <div class="col-lg-4 mr-auto">
+                    <p class="lead">Exercitation esse occaecat veniam duis ut voluptate nostrud reprehenderit. Est velit duis enim aute ea. Eu pariatur ex sunt in officia ad mollit incididunt ullamco. Velit do veniam dolor sit enim enim tempor officia non aliqua proident
+                        non occaecat. Est minim est sint nulla occaecat dolor do ea incididunt dolore.</p>
+                </div>
+            </div>
+
+            <!-- About Section Button -->
+            <div class="text-center mt-4">
+                <a class="btn btn-xl btn-outline-light" href="https://startbootstrap.com/themes/freelancer/">
+                    <i class="fas fa-play mr-2"></i> Začít
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="page-section bg-white text-white mb-0" id="about">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="card col-lg col-md-5 mx-lg-4 m-md-2">
+                    <img class="card-img-top rounded-circle p-3" src="https://via.placeholder.com/720" alt="Card image cap">
+                    <div class="card-body text-center">
+                        <h3 class="text-primary">Martin Knespl</h3>
+                        <p class="card-text">Design</p>
+                        <a class="btn btn-outline-primary btn-social" href="#">
+                            <i class="fab fa-fw fa-facebook-f"></i>
+                        </a>
+                        <a class="btn btn-outline-primary btn-social" href="#">
+                            <i class="fab fa-fw fa-twitter"></i>
+                        </a>
+                        <a class="btn btn-outline-primary btn-social" href="#">
+                            <i class="fab fa-fw fa-discord"></i>
+                        </a>
+                        <a class="btn btn-outline-primary btn-social mx-1" href="#">
+                            <i class="fab fa-fw fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="card col-lg col-md-5 mx-lg-4 m-md-2">
+                    <img class="card-img-top rounded-circle p-3" src="https://via.placeholder.com/720" alt="Card image cap">
+                    <div class="card-body text-center">
+                        <h3 class="text-primary">Jana Roubová</h3>
+                        <p class="card-text">Didaktické materiály</p>
+                        <a class="btn btn-outline-primary btn-social" href="#">
+                            <i class="fab fa-fw fa-facebook-f"></i>
+                        </a>
+                        <a class="btn btn-outline-primary btn-social" href="#">
+                            <i class="fab fa-fw fa-twitter"></i>
+                        </a>
+                        <a class="btn btn-outline-primary btn-social" href="#">
+                            <i class="fab fa-fw fa-discord"></i>
+                        </a>
+                        <a class="btn btn-outline-primary btn-social mx-1" href="#">
+                            <i class="fab fa-fw fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="card col-lg col-md-5 mx-lg-4 m-md-2">
+                    <img class="card-img-top rounded-circle p-3" src="https://via.placeholder.com/720" alt="Card image cap">
+                    <div class="card-body text-center">
+                        <h3 class="text-primary">Pavel Šrytr</h3>
+                        <p class="card-text">Návrh DPS, programování</p>
+                        <a class="btn btn-outline-primary btn-social" href="#">
+                            <i class="fab fa-fw fa-facebook-f"></i>
+                        </a>
+                        <a class="btn btn-outline-primary btn-social" href="#">
+                            <i class="fab fa-fw fa-twitter"></i>
+                        </a>
+                        <a class="btn btn-outline-primary btn-social" href="#">
+                            <i class="fab fa-fw fa-discord"></i>
+                        </a>
+                        <a class="btn btn-outline-primary btn-social mx-1" href="#">
+                            <i class="fab fa-fw fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
+

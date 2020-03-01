@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ user }}{% endblock %}
+
+{% block body %}
+    <div class="row min-vh-100 mt-5">
+        <div class="col-lg-10  m-auto border-dark">
+            <div class="row mt-2">
+                <div class="col-3">
+                    <img src="{{ user.avatar }}" width="150" class="rounded-circle border border-gray">
+                </div>
+                <div class="col-6">
+                    <h2>{{ user }}</h2>
+                    <p>{{ user.bio }}</p>
+                </div>
+                <div class="col-3">
+                    <h2 class="display-4">{{ user.karma }}<i class="text-success far fa-star"></i><br></h2>
+                    <h2 class="display-4">{{ user.money }}<i class=" text-warning fas fa-coins"></i></h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="container">
+                    <ul class="nav nav-tabs">
+                        <li class=" nav-item"><a data-toggle="tab" class="nav-link active" href="#statistics">Statistika</a></li>
+                        <li class=" nav-item"><a data-toggle="tab" class="nav-link" href="#log">Log</a></li>
+                        <li class=" nav-item"><a data-toggle="tab" class="nav-link" href="#inventory">Inventář</a></li>
+                        <li class=" nav-item"><a data-toggle="tab" class="nav-link" href="#moodle">Moodle</a></li>
+                        <li class=" nav-item"><a data-toggle="tab" class="nav-link" href="#data">Údaje</a></li>
+                    </ul>
+
+                    <div class="tab-content">
+                        <div id="statistics" class="tab-pane active">
+                            <h3>Statistika</h3>
+                            <img src="{{ asset("img/under_construction.png") }}" class="img img-fluid">
+                            <div class="text-center display-4">Ve výstavbě</div>
+                        </div>
+                        <div id="log" class="tab-pane fade">
+                            <h3>Log</h3>
+                            <img src="{{ asset("img/under_construction.png") }}" class="img img-fluid">
+                            <div class="text-center display-4">Ve výstavbě</div>
+                        </div>
+                        <div id="inventory" class="tab-pane fade">
+                            <h3>Inventář</h3>
+                            <img src="{{ asset("img/under_construction.png") }}" class="img img-fluid">
+                            <div class="text-center display-4">Ve výstavbě</div>
+                        </div>
+                        <div id="moodle" class="tab-pane fade">
+                            <h3>Moodle</h3>
+                            <img src="{{ asset("img/under_construction.png") }}" class="img img-fluid">
+                            <div class="text-center display-4">Ve výstavbě</div>
+                        </div>
+                        <div id="data" class="tab-pane fade">
+                            <h3>Údaje</h3>
+                            <img src="{{ asset("img/under_construction.png") }}" class="img img-fluid">
+                            <div class="text-center display-4">Ve výstavbě</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

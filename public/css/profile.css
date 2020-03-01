@@ -1,0 +1,15 @@
+.user-info{
+    max-height:200px;
+}
+.user-avatar{
+    max-height: 150px;
+}
+.top-divider{
+    border-top: 2px solid black;
+}
+.karma{
+    color:#009900;
+}
+.coins{
+    color:#ffa31a;
+}

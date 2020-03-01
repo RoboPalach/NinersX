@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Přidělování bodů{% endblock %}
+{% block javascripts %}
+{{ parent() }}
+    <script src="{{ asset('js/user_list.js')}}"></script>
+{% endblock %}
+
+{% block body %}
+
+    <div class="container m-3">
+        <div class="row my-5"></div>
+        <div class="row mb-3">
+            <form class="form">
+                <input id="search" class="form-control form-control-lg m-sm-2" type="search" placeholder="Hledat" aria-label="Search"><br>
+                {% for t in teams %}
+                    <div class="badge badge-filter m-1" style="background-color: rgb({{ t.color }})">
+                        {{ t.name }}
+                    </div>
+                {% endfor %}
+            </form>
+        </div>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col"></th>
+                <th scope="col">Jméno</th>
+                <th scope="col">Týmy</th>
+                <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for u in users %}
+                <tr>
+                    <td>{{ u.id }}</td>
+                    <td>
+                        <img src="{{ u.avatar }}" class="img img-fluid rounded-circle" width="50" alt="User avatar">
+                    </td>
+                    <td><a href="{{ path("user_profile",{'slug':u.slug}) }}"> {{ u }}</a></td>
+                    <td>
+                        {% for t in u.teams %}
+                            <div class="badge" style="background-color: rgb({{ t.color }})">
+                                {{ t.name }}
+                            </div>
+                        {% endfor %}
+                    </td>
+
+                    <td>
+                        <input type="number" value="5">
+                        <button class=" btn btn-success"><i class="fas fa-angle-up"></i></button>
+                        <button class="btn btn-danger"><i class="fas fa-angle-down"></i></button>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

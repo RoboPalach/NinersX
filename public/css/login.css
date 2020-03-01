@@ -1,0 +1,13 @@
+.login{
+    padding-bottom: calc(10rem - 72px);
+    background: linear-gradient(to bottom,rgba(249,250,245,.7) 25%,rgba(0,51,204,.9) 100%),url("https://images.wallpaperscraft.com/image/boy_girl_cheating_students_80454_1920x1080.jpg");
+    background-position-x: 0%;
+    background-position-y: 0%;
+    background-attachment: scroll, scroll;
+    background-size: auto, auto;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-size: cover;
+
+}
