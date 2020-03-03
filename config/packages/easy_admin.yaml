@@ -1,9 +1,42 @@
 easy_admin:
-  site_name: '<a href="/">Niners Brutal Admin</a>'
+  site_name: '<a href="/admin">Niners Brutal Admin</a>'
   user:
     display_name: true
     display_avatar: true
     avatar_property_path: 'getAvatar'
   entities:
-      - App\Entity\User
-      - App\Entity\Team
+    User:
+      class: App\Entity\User
+    Team:
+      class: App\Entity\Team
+    Course:
+      class: App\Entity\Course
+      list:
+        fields:
+          - 'id'
+          - {property: 'image.name', label: 'Image', type: 'image', base_path: '/imagesRepository'}
+          - 'name'
+          - 'owner'
+          - 'createdAt'
+    Chapter:
+      class: App\Entity\Chapter
+    Image:
+      class: App\Entity\Image
+      list:
+        fields:
+          - 'id'
+          - { property: 'name', type: 'image', base_path: '/imagesRepository' }
+          - 'altName'
+          - 'createdAt'
+          - 'owner'
+      show:
+        fields:
+          - { property: 'name', type: 'image', base_path: '/imagesRepository' }
+      form:
+        fields:
+          - 'altName'
+          - 'name'
+          - { property: 'imageFile', type: 'file'}
+          - 'owner'
+          - 'createdAt'
+

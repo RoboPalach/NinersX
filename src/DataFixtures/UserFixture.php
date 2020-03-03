@@ -34,6 +34,7 @@ class UserFixture extends BaseFixture implements DependentFixtureInterface
                 $user->addTeam($this->getRandomReference('teams'));
             }
             $user->setPassword($this->passwordEncoder->encodePassword($user,"engage"));
+            $user->setMoney(0);
             $user->changeKarma($this->faker->numberBetween(-5,350));
 
             return $user;

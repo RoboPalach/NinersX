@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Správce obrázků{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/image_admin.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row mt-5 mb-1"></div>
+        <div class="row mt-4">
+            <div class="col-10">
+                <h1>Správce obrázků</h1>
+            </div>
+            <div class="col-2">
+                <a class="btn btn-primary" href="" data-toggle="modal" data-target="#addModal"><i class="fas fa-plus mx-1"></i>Nový</a>
+            </div>
+        </div>
+        <div class="row min-vh-100">
+            {% for i in images %}
+                <div class="col-lg-3 col-md-10 m-1">
+                    <div class="card">
+                        <img class="card-img-top" src="{{ vich_uploader_asset(i,"imageFile") }}" alt="Card image cap">
+                        <div class="card-body">
+                            <h3>{{ i.altName }}</h3>
+                            <span>
+                                <a href="{{ path('user_profile',{'slug':i.owner.slug}) }}">{{ i.owner }}</a>
+                                {{ i.createdAt|ago }}
+                            </span>
+                            <div class="text-right">
+                                <a href="{{ vich_uploader_asset(i,"imageFile") }}" class="btn btn-info"><i class="fas fa-link"></i></a>
+                                <a href="" class="btn btn-primary"><i class="fas fa-edit"></i></a>
+                                <a href="{{ path('api_image_remove',{'id':i.id}) }}" class="btn btn-danger remove"><i class="fas fa-trash"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Obrázek</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    {{ form(createForm) }}
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

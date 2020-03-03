@@ -10,17 +10,29 @@
 
     <div class="container m-3">
         <div class="row my-5"></div>
-        <div class="row mb-3">
-            <form class="form">
-                <input id="search" class="form-control form-control-lg m-sm-2" type="search" placeholder="Hledat" aria-label="Search"><br>
-                {% for t in teams %}
-                    <div class="badge badge-filter m-1" style="background-color: rgb({{ t.color }})">
-                        {{ t.name }}
-                    </div>
-                {% endfor %}
-            </form>
+        <div class="row">
+            <div class="col-8">
+                    <input id="search" class="form-control form-control-lg m-sm-2" type="search" placeholder="Hledat" aria-label="Search"><br>
+            </div>
+            <div class="col-4">
+                <div class="row">
+                    <input type="number" class="form-control form-control-lg col-sm mt-2" style="width: 150px" value="5">
+                    <a href="{{ path('api_team_change_point',{'id':99}) }}" class="btn btn-success my-3 mx-2 text-white team-points"><i class="fas fa-angle-up"></i></a>
+                    <a href="{{ path('api_team_change_point',{'id':99}) }}" class="btn btn-danger my-3 mx-2 text-white team-points
+"><i class="fas fa-angle-down"></i></a>
+                </div>
+            </div>
         </div>
-
+        <div class="row">
+            <div>
+            {% for t in teams %}
+                <div id = "{{ t.id }}" class="badge badge-filter my-2" style="background-color: rgb({{ t.color }})">
+                    {{ t.name }}
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+        <div class="table-responsive">
         <table class="table">
             <thead>
             <tr>
@@ -28,33 +40,38 @@
                 <th scope="col"></th>
                 <th scope="col">Jméno</th>
                 <th scope="col">Týmy</th>
+                <th scope="col">Karma</th>
                 <th scope="col"></th>
             </tr>
             </thead>
             <tbody>
             {% for u in users %}
-                <tr>
-                    <td>{{ u.id }}</td>
-                    <td>
+                <tr class="user-row">
+                    <td scope="col">{{ u.id }}</td>
+                    <td scope="col">
                         <img src="{{ u.avatar }}" class="img img-fluid rounded-circle" width="50" alt="User avatar">
                     </td>
-                    <td><a href="{{ path("user_profile",{'slug':u.slug}) }}"> {{ u }}</a></td>
-                    <td>
+                    <td scope="col"><a href="{{ path("user_profile",{'slug':u.slug}) }}"> {{ u }}</a></td>
+                    <td scope="col" style="max-width: 200px">
                         {% for t in u.teams %}
                             <div class="badge" style="background-color: rgb({{ t.color }})">
                                 {{ t.name }}
                             </div>
                         {% endfor %}
                     </td>
+                    <td scope="col" class="karma">
+                        {{ u.karma }}
+                    </td>
 
-                    <td>
-                        <input type="number" value="5">
-                        <button class=" btn btn-success"><i class="fas fa-angle-up"></i></button>
-                        <button class="btn btn-danger"><i class="fas fa-angle-down"></i></button>
+                    <td scope="col" class="d-lg-table-cell">
+                        <input type="number" class="form-control mb-1" style="width: 150px" value="5">
+                        <a class=" btn btn-success mx-2 text-white point-change" href="{{ path('api_user_change_points',{'id':u.id}) }}"><i class="fas fa-angle-up"></i></a>
+                        <a class="btn btn-danger mx-2 text-white point-change" href="{{ path('api_user_change_points',{'id':u.id}) }}"><i class="fas fa-angle-down"></i></a>
                     </td>
                 </tr>
             {% endfor %}
             </tbody>
         </table>
+        </div>
     </div>
 {% endblock %}

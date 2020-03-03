@@ -25,6 +25,7 @@
 
                 <!--Moodle-->
                 <div class="col-md-6 col-lg-4">
+                    <a href="{{ path('admin_moodle') }}">
                     <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal2">
                         <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                             <div class="portfolio-item-caption-content text-center text-white">
@@ -34,6 +35,7 @@
                         </div>
                         <img class="img-fluid" src="img/portfolio/cake.png" alt="">
                     </div>
+                    </a>
                 </div>
 
                 <!-- Profile-->
@@ -50,9 +52,39 @@
                         </div>
                     </a>
                 </div>
-            </div>
-            <!-- /.row -->
 
+                <!-- Profile-->
+                <div class="col-md-6 col-lg-4">
+                    <a href="{{ path("admin_image") }}">
+                        <div class="portfolio-item mx-auto">
+                            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                                <div class="portfolio-item-caption-content text-center text-white">
+                                    <i class="fas fa-images fa-3x"></i>
+                                    <h3>Obrázky</h3>
+                                </div>
+                            </div>
+                            <img class="img-fluid" src="img/portfolio/circus.png" alt="">
+                        </div>
+                    </a>
+                </div>
+
+            {% if is_granted('ROLE_SUPER_ADMIN') %}
+                <div class="col-md-6 col-lg-4">
+                    <a href="/brutalAdmin">
+                        <div class="portfolio-item mx-auto">
+                            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                                <div class="portfolio-item-caption-content text-center text-white">
+                                    <i class="fas fa-users-cog fa-3x"></i>
+                                    <h3>Brutal Admin</h3>
+                                </div>
+                            </div>
+                            <img class="img-fluid" src="img/portfolio/circus.png" alt="">
+                        </div>
+                    </a>
+                </div>
+            {% endif %}
+            <!-- /.row -->
+            </div>
         </div>
     </section>
 

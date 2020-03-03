@@ -85,9 +85,27 @@ class User implements UserInterface
      */
     private $teams;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Image", mappedBy="owner")
+     */
+    private $images;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Course", mappedBy="owner")
+     */
+    private $courses;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Chapter", mappedBy="owner")
+     */
+    private $chapters;
+
     public function __construct()
     {
         $this->teams = new ArrayCollection();
+        $this->images = new ArrayCollection();
+        $this->courses = new ArrayCollection();
+        $this->chapters = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -310,6 +328,99 @@ class User implements UserInterface
         if ($this->teams->contains($team)) {
             $this->teams->removeElement($team);
             $team->removeMember($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Image[]
+     */
+    public function getImages(): Collection
+    {
+        return $this->images;
+    }
+
+    public function addImage(Image $image): self
+    {
+        if (!$this->images->contains($image)) {
+            $this->images[] = $image;
+            $image->setOwner($this);
+        }
+
+        return $this;
+    }
+
+    public function removeImage(Image $image): self
+    {
+        if ($this->images->contains($image)) {
+            $this->images->removeElement($image);
+            // set the owning side to null (unless already changed)
+            if ($image->getOwner() === $this) {
+                $image->setOwner(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Course[]
+     */
+    public function getCourses(): Collection
+    {
+        return $this->courses;
+    }
+
+    public function addCourse(Course $course): self
+    {
+        if (!$this->courses->contains($course)) {
+            $this->courses[] = $course;
+            $course->setOwner($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCourse(Course $course): self
+    {
+        if ($this->courses->contains($course)) {
+            $this->courses->removeElement($course);
+            // set the owning side to null (unless already changed)
+            if ($course->getOwner() === $this) {
+                $course->setOwner(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Chapter[]
+     */
+    public function getChapters(): Collection
+    {
+        return $this->chapters;
+    }
+
+    public function addChapter(Chapter $chapter): self
+    {
+        if (!$this->chapters->contains($chapter)) {
+            $this->chapters[] = $chapter;
+            $chapter->setOwner($this);
+        }
+
+        return $this;
+    }
+
+    public function removeChapter(Chapter $chapter): self
+    {
+        if ($this->chapters->contains($chapter)) {
+            $this->chapters->removeElement($chapter);
+            // set the owning side to null (unless already changed)
+            if ($chapter->getOwner() === $this) {
+                $chapter->setOwner(null);
+            }
         }
 
         return $this;

@@ -1,36 +1,39 @@
-$(()=>{
-    let input, filter, teams;
-    input = $("#search").val();
-    teams = $(".filter-active");
-
-});
-
+//Apply filters on users
 let filter = function(){
-    let input, filter, teams;
-    input = $("#search").val().toUpperCase();
-    teams = $(".badge-filter-active").text().toString().toUpperCase();
+    let searchQuery = $("#search").val().toUpperCase();
+    let selectedTeams = $(".badge-filter-active");
+    selectedTeams = selectedTeams.map(x=>selectedTeams[x].innerText).toArray()
+    let users = $('.user-row').toArray();
 
-    let users = $("tr");
-    for (i=1; i<2;i++){
-        let name = $(users[i].getElementsByTagName('a')[0]).text();
-        var myTeams = [].slice.call($(users[i].getElementsByClassName('badge')));
-        function myFunc(i){
-            var myRec= /(?<=>)(.*)(?=<)/;
-            return myRec.exec(i)[0];
-        };
-        console.log(myTeams.map(myFunc))
-        //console.log(myTeams.toUpperCase().indexOf(teams.toUpperCase()));
-        console.log();
-        if(name.toUpperCase().indexOf(input)>-1&&
-            myTeams.indexOf(teams)>-1){
-            $(users[i]).addClass('d-block');
-            $(users[i]).removeClass('d-none');
+    users.forEach((u)=>{
+        let userName = $(u).children().children('a').text().toUpperCase();
+        let userTeams = $(u).children().children('.badge');
+        let teamCrit = false;
+        let nameCrit = false;
+        userTeams = userTeams.map(x=>userTeams[x].innerText).toArray()
+        if(selectedTeams.length>0){
+            selectedTeams.forEach((st)=>{   //check team selector
+                if(userTeams.includes(st))
+                    teamCrit=true;
+            })
         }
         else{
-            $(users[i]).removeClass('d-block');
-            $(users[i]).addClass('d-none');
+            teamCrit=true;
         }
-    }
+
+
+        if(userName.indexOf(searchQuery)>-1)
+            nameCrit=true;
+
+        if(nameCrit && teamCrit){
+            $(u).addClass('d-block');
+            $(u).removeClass('d-none');
+        }
+        else{
+            $(u).addClass('d-none');
+            $(u).removeClass('d-block');
+        }
+    })
 }
 
 $(".badge-filter").click((e)=>{
@@ -39,6 +42,61 @@ $(".badge-filter").click((e)=>{
     $(el).toggleClass('p-2');
     filter();
 });
+
 $('#search').keyup((e)=>{
    filter()
 });
+
+$('.point-change').click((e)=>{
+    e.preventDefault();
+    let el = e.target;
+    if(!$(el).attr('href'))
+        el = $(el).parent('a')[0];
+    let points = $(el).siblings('input').val();
+    if(!$(el).hasClass('btn-success'))
+        points= points*(-1);
+    $.ajax({
+        url: $(el).attr('href'),
+        type: "POST",
+        data:{
+            'points':points
+        },
+        dataType:'json',
+        success: (r)=>{
+            console.log($(el).parents('tr').find('.karma'));
+            $(el).parents('tr').find('.karma')[0].innerText = r['points'];
+        },
+        error:(e)=>{
+            console.log(e);
+        }
+    })
+})
+
+$(".team-points").click((e)=>{
+    e.preventDefault();
+    let el = e.target;
+    if(!$(el).attr('href'))
+        el = $(el).parent('a')[0];
+    let points = $(el).siblings('input').val();
+    if(!$(el).hasClass('btn-success'))
+        points= points*(-1);
+    let teams = $('.badge-filter-active');
+    teams = teams.map(x=>$(teams[x]).attr('id')).toArray();
+    teams.forEach((t)=>{
+        $.ajax({
+            url: $(el).attr('href').replace('99',t),
+            type: "POST",
+            data:{
+                'points':points
+            },
+            dataType:'json',
+            success: (r)=>{
+                console.log(r)
+            },
+            error:(e)=>{
+                console.log(e);
+            }
+        })
+    })
+    location.reload()
+})
