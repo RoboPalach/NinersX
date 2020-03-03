@@ -25,30 +25,31 @@
                 <h1>Editor</h1>
         </div>
         <div class="row my-2">
-            <form>
+            <form id="cForm" action="{{ path('api_moodle_chapter_add',{'id':course.id}) }}">
                 <div class="form-row">
                     <div class="col-3">
-                        <input id="cName" type="text" class="form-control" placeholder="Jméno">
+                        <input id="cName" type="text" class="form-control" placeholder="Jméno" value="{{chapter.name  }}">
                     </div>
                     <div class="col-2">
-                        <input id="cPosition" type="number" class="form-control" placeholder="Pořadí">
+                        <input id="cPosition" type="number" class="form-control" placeholder="Pořadí" value="{{ chapter.position }}">
                     </div>
                     <div class="col-2">
-                        <input id="cAuthor" class="form-control" type="text" placeholder="Autor" readonly>
+                        <input id="cAuthor" class="form-control" type="text" placeholder="Autor" value="{{ chapter.owner }}"readonly>
                     </div>
                     <div class="col-2">
-                        <input id="cCreatedAt"class="form-control" type="text" placeholder="Vytvořeno" readonly>
+                        <input id="cCreatedAt"class="form-control" type="text" placeholder="Vytvořeno" value="{{ chapter.createdAt.date }}"readonly>
                     </div>
                     <div class="col-1">
-                        <input id="cID" class="form-control input-sm" type="text" placeholder="ID" readonly>
+                        <input id="cID" class="form-control input-sm" type="text" placeholder="ID" value="{{ chapter.id }}"readonly>
                     </div>
+                    <input id="courseID" class="form-control input-sm" type="text" value="{{ course.id }}" readonly hidden>
                     <div class="col-2">
                         <a id="cSaveBtn" href="" class="btn btn-primary">Uložit</a>
                     </div>
                 </div>
             </form>
         </div>
-            <textarea id="cContent"></textarea>
+            <textarea id="cContent">{{ chapter.content }}</textarea>
     </div>
     {% block modal %}
         {{ parent() }}

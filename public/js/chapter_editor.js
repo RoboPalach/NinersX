@@ -40,6 +40,7 @@ var simplemde = new SimpleMDE({
         }
     ]
 });
+simplemde.value($("#cContent").text())
 $('[title="Toggle Side by Side (F9)"]').click(()=>{
     if(!$('nav').hasClass("d-none"))
         $("nav").toggleClass("d-none");
@@ -49,6 +50,31 @@ $('[title="Toggle Fullscreen (F11)"]').click(()=>{
     $("nav").toggleClass("d-none");
 })
 $('#cSaveBtn').click((e)=>{
+    e.preventDefault()
     const btn = $(e.target)
-    let formData = new FormData()
+    $.ajax({
+        url:$("#cForm").attr('action'),
+        type: Number($("#cID").val())>0?"put":"post",
+        data: {
+            'id': $("#cID").val(),
+            'course_id': $("#courseID").val(),
+            'name':$("#cName").val(),
+            'position': $("#cPosition").val(),
+            'content':simplemde.value()
+        },
+        beforeSend: ()=>{
+          console.log("Sending using"+Number($("#cID").val())>0?"put":"post")
+        },
+        success: r=>{
+            console.log("OK")
+            console.log(r)
+            $("#cAuthor").val(r['author']);
+            $("#cID").val(r['id']);
+            $("#cCreatedAt").val(r['createdAt']['date']);
+        },
+        error: e=>{
+            console.log(e)
+        }
+    })
+
 });

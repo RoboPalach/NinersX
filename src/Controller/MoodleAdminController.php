@@ -2,11 +2,13 @@
 
 namespace App\Controller;
 
+use App\Entity\Chapter;
 use App\Entity\Course;
 use App\Form\CourseType;
 use App\Repository\CourseRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -48,9 +50,17 @@ class MoodleAdminController extends AbstractController
     }
 
     /**
-     * @Route("/admin/moodle/editor", name="admin_moodle_chapter_editor")
+     * @Route("/admin/moodle/{slug}/{id}", name="admin_moodle_chapter_editor")
      */
-    public function chapterEditor(){
-        return $this->render("moodle/chapter_editor.html.twig",[]);
+    public function chapterEditor($slug=null, Chapter $chapter=null, CourseRepository $courseRepository){
+        $course = $courseRepository->findOneBy(['slug'=>$slug]);
+        if(empty($course))
+            return new JsonResponse('Course wasnt found',404);
+        if(empty($chapter))
+            $chapter=new Chapter();
+        return $this->render("moodle/chapter_editor.html.twig",[
+            'course'=>$course,
+            'chapter'=>$chapter
+        ]);
     }
 }
