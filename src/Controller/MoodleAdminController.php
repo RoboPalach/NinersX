@@ -46,4 +46,11 @@ class MoodleAdminController extends AbstractController
             'chapters'=>$course->getChapters()
         ]);
     }
+
+    /**
+     * @Route("/admin/moodle/editor", name="admin_moodle_chapter_editor")
+     */
+    public function chapterEditor(){
+        return $this->render("moodle/chapter_editor.html.twig",[]);
+    }
 }
