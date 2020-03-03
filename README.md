@@ -4,6 +4,7 @@
 Prerequirements
 - Mysql 8.0
 - Symfony 5.0^
+- Edit .env file
 ```shell
 composer install
 bin/console doctrine:table:create
