@@ -43,7 +43,8 @@
 
                 <!--Moodle-->
                 <div class="col-md-6 col-lg-4">
-                    <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal2">
+                    <div class="portfolio-item mx-auto">
+                        <a href="{{ path('moodle_home') }}">
                         <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                             <div class="portfolio-item-caption-content text-center text-white">
                                 <i class="fas fa-book-open fa-3x"></i>
@@ -51,12 +52,14 @@
                             </div>
                         </div>
                         <img class="img-fluid" src="img/portfolio/cake.png" alt="">
+                        </a>
                     </div>
                 </div>
 
                 <!-- Profile-->
                 <div class="col-md-6 col-lg-4">
-                    <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal3">
+                    <div class="portfolio-item mx-auto" >
+                        <a href="{{ path('user_profile') }}">
                         <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                             <div class="portfolio-item-caption-content text-center text-white">
                                 <i class="fas fa-user fa-3x"></i>
@@ -64,7 +67,9 @@
                             </div>
                         </div>
                         <img class="img-fluid" src="img/portfolio/circus.png" alt="">
+                        </a>
                     </div>
+
                 </div>
             </div>
             <!-- /.row -->
@@ -116,57 +121,40 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="card col-lg col-md-5 mx-lg-4 m-md-2">
-                    <img class="card-img-top rounded-circle p-3" src="https://via.placeholder.com/720" alt="Card image cap">
+                    <img class="card-img-top rounded-circle p-3" src="{{ asset('img/knespl_rect.png') }}" alt="Card image cap">
                     <div class="card-body text-center">
-                        <h3 class="text-primary">Martin Knespl</h3>
+                        <h3 class="text-primary">Martin <br>Knespl</h3>
                         <p class="card-text">Design</p>
-                        <a class="btn btn-outline-primary btn-social" href="#">
+                        <a class="btn btn-outline-primary btn-social" href="https://www.facebook.com/profile.php?id=100008251950290">
                             <i class="fab fa-fw fa-facebook-f"></i>
                         </a>
-                        <a class="btn btn-outline-primary btn-social" href="#">
-                            <i class="fab fa-fw fa-discord"></i>
-                        </a>
-                        <a class="btn btn-outline-primary btn-social mx-1" href="#">
+
+                        <a class="btn btn-outline-primary btn-social mx-1" href="https://instagram.com/knesplm?igshid=83193i2460na">
                             <i class="fab fa-fw fa-instagram"></i>
                         </a>
                     </div>
                 </div>
 
                 <div class="card col-lg col-md-5 mx-lg-4 m-md-2">
-                    <img class="card-img-top rounded-circle p-3" src="https://via.placeholder.com/720" alt="Card image cap">
+                    <img class="card-img-top rounded-circle p-3" src="{{ asset('img/roubova_rect.png') }}" alt="Card image cap">
                     <div class="card-body text-center">
-                        <h3 class="text-primary">Jana Roubová</h3>
+                        <h3 class="text-primary">Jana <br>Roubová</h3>
                         <p class="card-text">Didaktické materiály</p>
-                        <a class="btn btn-outline-primary btn-social" href="#">
-                            <i class="fab fa-fw fa-facebook-f"></i>
-                        </a>
-                        <a class="btn btn-outline-primary btn-social" href="#">
-                            <i class="fab fa-fw fa-twitter"></i>
-                        </a>
-                        <a class="btn btn-outline-primary btn-social" href="#">
-                            <i class="fab fa-fw fa-discord"></i>
-                        </a>
-                        <a class="btn btn-outline-primary btn-social mx-1" href="#">
+                        <a class="btn btn-outline-primary btn-social mx-1" href="https://instagram.com/janaroubova?igshid=wgkn81mu1rai">
                             <i class="fab fa-fw fa-instagram"></i>
                         </a>
                     </div>
                 </div>
 
                 <div class="card col-lg col-md-5 mx-lg-4 m-md-2">
-                    <img class="card-img-top rounded-circle p-3" src="https://via.placeholder.com/720" alt="Card image cap">
+                    <img class="card-img-top rounded-circle p-3" src="{{asset('img/srytr_rect.png')}}" alt="Card image cap">
                     <div class="card-body text-center">
-                        <h3 class="text-primary">Pavel Šrytr</h3>
+                        <h3 class="text-primary">Pavel <br>Šrytr</h3>
                         <p class="card-text">Návrh DPS, programování</p>
-                        <a class="btn btn-outline-primary btn-social" href="#">
-                            <i class="fab fa-fw fa-facebook-f"></i>
+                        <a class="btn btn-outline-primary btn-social" href="https://github.com/pajasry">
+                            <i class="fab fa-fw fa-github"></i>
                         </a>
-                        <a class="btn btn-outline-primary btn-social" href="#">
-                            <i class="fab fa-fw fa-twitter"></i>
-                        </a>
-                        <a class="btn btn-outline-primary btn-social" href="#">
-                            <i class="fab fa-fw fa-discord"></i>
-                        </a>
-                        <a class="btn btn-outline-primary btn-social mx-1" href="#">
+                        <a class="btn btn-outline-primary btn-social mx-1" href="https://www.instagram.com/srytrpavel/">
                             <i class="fab fa-fw fa-instagram"></i>
                         </a>
                     </div>
