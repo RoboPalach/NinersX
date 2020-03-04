@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset("css/login.css") }}">
+{% endblock %}
+
+{% block body %}
+    <div class="login vh-100 m-0">
+        <div class="row h-100 my-5">
+            <div class="col-6 my-auto mx-auto p-4 bg-white rounded-sm shadow-lg text-center">
+                <h3>Registrace</h3>
+                <form method="post" class="justify-content-center">
+                    {{ form_start(form) }}
+                        <div class="row">
+                            <div class="col">
+                                {{ form_row(form.email) }}
+                            </div>
+                        </div>
+                    <div class="row">
+                        <div class="col">
+                            {{ form_row(form.name) }}
+                        </div>
+                        <div class="col">
+                            {{ form_row(form.surname) }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            {{ form_row(form.password.first) }}
+                        </div>
+                        <div class="col">
+                            {{ form_row(form.password.second) }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                        {{ form_row(form.bio) }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            {{ form_row(form.code) }}
+                        </div>
+                        <div class="col p-4">
+                            {{ form_row(form.submit) }}
+                        </div>
+                    </div>
+                    {{ form_end(form) }}
+                </form>
+
+                <!-- Remind Passowrd -->
+                <div class="row m-1">
+                    <a class="col text-right" href="{{ path('app_login') }}">Už máš účet?</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
