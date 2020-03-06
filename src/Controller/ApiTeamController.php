@@ -25,7 +25,6 @@ class ApiTeamController extends AbstractController
             return new JsonResponse('Karma of all team member was updated',200);
         }
         return new JsonResponse("Something bad happens. Because dev was lazy and under pressure he wasnt make proper error message",500);
-
-
     }
+
 }

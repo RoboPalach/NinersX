@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Repository\TeamRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -44,7 +45,21 @@ class ApiUserController extends AbstractController
         }
         $manager->flush();
         return new JsonResponse('OK');
+    }
 
-
+    /**
+     * @Route("/api/user/{id}/addTeams", name="api_user_addTeams")
+     */
+    public function addTeams(User $user = null, Request $request, EntityManagerInterface $manager, TeamRepository $teamRepository){
+        if(empty($user))
+            return new JsonResponse('User not found',404);
+        $teams = json_decode($request->getContent());
+        foreach ($teams as $t){
+            $sel = $teamRepository->findOneBy(['name'=>$t]);
+            if(!empty($sel))
+                $user->addTeam($sel);
+        }
+        $manager->flush();
+        return new JsonResponse('OK');
     }
 }

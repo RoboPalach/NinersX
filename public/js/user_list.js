@@ -100,3 +100,39 @@ $(".team-points").click((e)=>{
     })
     location.reload()
 })
+
+$(".addTeam").click((e)=>{
+    e.preventDefault()
+    let a = $(e.target);
+    if(!a.attr('href'))
+        a = $(a.parent('a'));
+    const modal = $('#addTeamModal').modal('show')
+    modal.append(`<span id="a${a.attr('id')}" class="userId"></span>`);
+})
+
+$('.newBadget').click((e)=>{
+    const badget =$(e.target)
+    if(badget.parent().attr('id')=="selectedBadges")
+        $('#badgeSelection').append(badget);
+    else
+        $('#selectedBadges').append(badget);
+})
+
+$('#addTeamModalSave').click((e)=>{
+    e.preventDefault();
+    let badges = $('#selectedBadges').find('.badge').toArray().map(x=>x.innerText);
+    const userId= $("#addTeamModal").find('.userId').attr('id').substring(1);
+    $.ajax({
+        url: $('#'+userId).attr('href'),
+        type: "post",
+        dataType:"json",
+        data: JSON.stringify(badges),
+        success:(r)=>{
+            console.log(r)
+            location.reload();
+        },
+        error:(e)=>{
+            console.log(e)
+        }
+    })
+})
