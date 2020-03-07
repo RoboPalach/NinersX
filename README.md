@@ -37,7 +37,7 @@ We are almost there. Now you need to create .htaccess file in project root eg. o
 RewriteEngine On
 RewriteRule (.*) public/$1 [L]
 ```
-Its because wedos looking for index in /www but symfony index is in /www/public. You can edit default symfony index to route requests to this url but it's not necessary because Symfony index handles the same thing as wedos do.
+Its because wedos looking for index in /www/domains/<domain name> but symfony index is in /www/domains/<domain name>/public.
 
 Next open .htaccess in /public and delete/comment 
 ```
@@ -52,7 +52,7 @@ The last thing needs to do is edit /vendor/symfony/http-kernel/Kernel.php. You a
 Dont forgot to change .env DB connection setting.
 
 #### Upload
-It's all. Now upload
+It's all. Now upload  
 ```
 bin
 config
@@ -65,6 +65,8 @@ vendor
 composer.json
 .htaccess
 ```
-and create var directory on your ftp server. Some "class not found errors" or 500 can be caused by bad file transfer. Don't forget to check the size of the file, it shouldn't be 0.
+to /www/domains/<domain name> or /www/subdom/<subdom name>. If you want run only one web you can rewrite /www but I dont recommed it.
+    
+Now create var directory in root of your symfony project on ftp server. Some "class not found errors" or 500 can be caused by bad file transfer. Don't forget to check the size of the file, it shouldn't be 0.
 ### Subdomains
 If you want to run any web app on a subdomain on wedos, you can. Wedos NoLimit granted 3 subdomains free. To create subdomains simply create a folder in /www/subdom/<Name of you subdomain> and deploy the project as you do with the main domain.
