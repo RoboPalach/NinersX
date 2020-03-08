@@ -39,4 +39,14 @@ easy_admin:
           - { property: 'imageFile', type: 'file'}
           - 'owner'
           - 'createdAt'
-
+    Item:
+      class: App\Entity\ShopItem
+      list:
+        fields:
+          - 'id'
+          - { property: 'previewImage.name', type: 'image', base_path: '/imagesRepository' }
+          - 'name'
+          - 'author'
+      show:
+        fields:
+          - { property: 'previewImage.name', type: 'image', base_path: '/imagesRepository' }

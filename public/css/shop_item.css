@@ -1,0 +1,9 @@
+.carousel img {
+    width: auto;
+    height: 225px;
+    max-height: 225px;
+    margin: 0 auto;
+}
+.carousel .carousel-item{
+    background-color: #585c59;
+}

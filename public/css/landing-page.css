@@ -2,7 +2,7 @@
 #intro{
     height: 100vh;
     padding-bottom: calc(10rem - 72px);
-    background: linear-gradient(to bottom,rgba(249,250,245,.7) 0,rgba(0,51,204,.9) 100%),url(../img/education.jpg.webp);
+    background: linear-gradient(to bottom,rgba(249,250,245,.7) 0,rgba(0,51,204,.9) 100%),url(../img/education.jpg);
     background-position-x: 0%;
     background-position-y: 0%;
     background-repeat: repeat, repeat;

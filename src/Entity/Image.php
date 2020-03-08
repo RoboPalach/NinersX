@@ -74,9 +74,15 @@ class Image
      */
     private $courses;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\ShopItem", mappedBy="previewImage")
+     */
+    private $shopItems;
+
     public function __construct()
     {
         $this->courses = new ArrayCollection();
+        $this->shopItems = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -227,5 +233,36 @@ class Image
     public function __toString()
     {
         return $this->altName;
+    }
+
+    /**
+     * @return Collection|ShopItem[]
+     */
+    public function getShopItems(): Collection
+    {
+        return $this->shopItems;
+    }
+
+    public function addShopItem(ShopItem $shopItem): self
+    {
+        if (!$this->shopItems->contains($shopItem)) {
+            $this->shopItems[] = $shopItem;
+            $shopItem->setPreviewImage($this);
+        }
+
+        return $this;
+    }
+
+    public function removeShopItem(ShopItem $shopItem): self
+    {
+        if ($this->shopItems->contains($shopItem)) {
+            $this->shopItems->removeElement($shopItem);
+            // set the owning side to null (unless already changed)
+            if ($shopItem->getPreviewImage() === $this) {
+                $shopItem->setPreviewImage(null);
+            }
+        }
+
+        return $this;
     }
 }

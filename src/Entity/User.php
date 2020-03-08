@@ -100,12 +100,25 @@ class User implements UserInterface
      */
     private $chapters;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\ShopItem", mappedBy="author")
+     */
+    private $shopItems;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\ShopItem", mappedBy="owners")
+     */
+    private $boughtItems;
+
+
     public function __construct()
     {
         $this->teams = new ArrayCollection();
         $this->images = new ArrayCollection();
         $this->courses = new ArrayCollection();
         $this->chapters = new ArrayCollection();
+        $this->shopItems = new ArrayCollection();
+        $this->boughtItems = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -425,4 +438,64 @@ class User implements UserInterface
 
         return $this;
     }
+
+    /**
+     * @return Collection|ShopItem[]
+     */
+    public function getShopItems(): Collection
+    {
+        return $this->shopItems;
+    }
+
+    public function addShopItem(ShopItem $shopItem): self
+    {
+        if (!$this->shopItems->contains($shopItem)) {
+            $this->shopItems[] = $shopItem;
+            $shopItem->setAuthor($this);
+        }
+
+        return $this;
+    }
+
+    public function removeShopItem(ShopItem $shopItem): self
+    {
+        if ($this->shopItems->contains($shopItem)) {
+            $this->shopItems->removeElement($shopItem);
+            // set the owning side to null (unless already changed)
+            if ($shopItem->getAuthor() === $this) {
+                $shopItem->setAuthor(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|ShopItem[]
+     */
+    public function getBoughtItems(): Collection
+    {
+        return $this->boughtItems;
+    }
+
+    public function addBoughtItem(ShopItem $boughtItem): self
+    {
+        if (!$this->boughtItems->contains($boughtItem)) {
+            $this->boughtItems[] = $boughtItem;
+            $boughtItem->addOwner($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBoughtItem(ShopItem $boughtItem): self
+    {
+        if ($this->boughtItems->contains($boughtItem)) {
+            $this->boughtItems->removeElement($boughtItem);
+            $boughtItem->removeOwner($this);
+        }
+
+        return $this;
+    }
+
 }

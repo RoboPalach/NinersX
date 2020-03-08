@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
@@ -60,6 +62,17 @@ class Chapter
      * @Gedmo\Slug(fields={"name","position"}, updatable=true, separator="_")
      */
     private $slug;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\ShopItem", mappedBy="tutorial")
+     */
+    private $shopItems;
+
+
+    public function __construct()
+    {
+        $this->shopItems = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -166,4 +179,34 @@ class Chapter
 
         return $this;
     }
+
+    /**
+     * @return Collection|ShopItem[]
+     */
+    public function getShopItems(): Collection
+    {
+        return $this->shopItems;
+    }
+
+    public function addShopItem(ShopItem $shopItem): self
+    {
+        if (!$this->shopItems->contains($shopItem)) {
+            $this->shopItems[] = $shopItem;
+            $shopItem->addTutorial($this);
+        }
+
+        return $this;
+    }
+
+    public function removeShopItem(ShopItem $shopItem): self
+    {
+        if ($this->shopItems->contains($shopItem)) {
+            $this->shopItems->removeElement($shopItem);
+            $shopItem->removeTutorial($this);
+        }
+
+        return $this;
+    }
+
+   
 }
