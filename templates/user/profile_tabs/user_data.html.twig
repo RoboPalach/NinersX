@@ -1,0 +1,24 @@
+<h3>Údaje</h3>
+<form id="userData" action="{{ path('api_user_update',{'id':user.id}) }}">
+    <div class="row">
+        <div class="col m-1">
+            <input type="text" class="form-control" name="name" placeholder="Jméno" value="{{ user.name }}">
+        </div>
+        <div class="col m-1">
+            <input type="text" class="form-control"name="surname" placeholder="Příjmení" value="{{ user.surname }}">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <textarea  style="height: 100%" name="bio" class="form-control m-1">{{ user.bio }}</textarea>
+        </div>
+        <div class="col">
+            <input type="text" class="form-control m-1" name="email" value="{{ user.email }}" placeholder="Email" readonly>
+            <input type="password" class="form-control m-1" name="password" placeholder="Nové Heslo">
+            <input type="password" class="form-control m-1" name="passwordAgain" placeholder="Nové Heslo Znovu">
+            <div class="text-right">
+                <a id="save" class="btn btn-primary">Uložit</a>
+            </div>
+        </div>
+    </div>
+</form>

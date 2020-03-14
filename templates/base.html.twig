@@ -38,7 +38,7 @@
                                 <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="{{ path('shop_home') }}">Garáž</a>
                             </li>
                             <li class="nav-item mx-0 mx-lg-1">
-                                <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="">O nás</a>
+                                <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="{{ path('app_about') }}">O nás</a>
                             </li>
                             {% if not is_granted('IS_AUTHENTICATED_REMEMBERED') %}
                             <li class="nav-item mx-0 mx-lg-1">
@@ -53,16 +53,24 @@
                                 <li class="nav-item mx-0 mx-lg-1">
                                     <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="{{ path("user_profile") }}">Profil</a>
                                 </li>
-                                <li class="nav-item mx-0 mx-lg-1">
-                                    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="{{ path('app_logout') }}">Odhlásit se</a>
-                                </li>
+                                {% if is_granted('ROLE_PREVIOUS_ADMIN') %}
+                                    <li class="nav-item mx-0 mx-lg-1">
+                                        <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger text-danger" href="{{ path('app_home', {'_switch_user': '_exit'}) }}">Exit impersonation</a>
+                                    </li>
+                                {% else %}
+                                    <li class="nav-item mx-0 mx-lg-1">
+                                        <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="{{ path('app_logout') }}">Odhlásit se</a>
+                                    </li>
+                                {% endif %}
                             {% endif %}
                         </ul>
                     </div>
                 </div>
             </nav>
         {% endblock %}
+
         <div class="mt-2">
+
         {% block body %}{% endblock %}
         </div>
 
@@ -81,14 +89,14 @@
                         <!-- Footer Social Icons -->
                         <div class="col-lg-4 mb-5 mb-lg-0">
                             <h4 class="text-uppercase mb-4">Kde na internetu jsme?</h4>
-                            <a class="btn btn-outline-light btn-social mx-1" href="#">
+                            <a class="btn btn-outline-light btn-social mx-1" target="_blank" href="#">
                                 <i class="fab fa-fw fa-facebook-f"></i>
                             </a>
 
-                            <a class="btn btn-outline-light btn-social mx-1" href="#">
+                            <a class="btn btn-outline-light btn-social mx-1" target="_blank" href="https://discord.gg/dw92Hjn">
                                 <i class="fab fa-fw fa-discord"></i>
                             </a>
-                            <a class="btn btn-outline-light btn-social mx-1" href="#">
+                            <a class="btn btn-outline-light btn-social mx-1" target="_blank" href="https://www.instagram.com/ninerscz/">
                                 <i class="fab fa-fw fa-instagram"></i>
                             </a>
                         </div>

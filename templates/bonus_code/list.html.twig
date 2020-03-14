@@ -1,0 +1,84 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bonusové kódy{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+    <div class="container m-3">
+        <div class="row my-5"></div>
+        <div class="row">
+            <div class="col-8">
+                <input id="search" class="form-control form-control-lg m-sm-2" type="search" placeholder="Hledat" aria-label="Search"><br>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                <tr>
+
+                </tr>
+                </thead>
+                <tbody>
+                {% for u in users %}
+                    <tr class="user-row">
+                        <td scope="col">{{ u.id }}</td>
+                        <td scope="col">
+                            <img src="{{ u.avatar }}" class="img img-fluid rounded-circle" width="50" alt="User avatar">
+                        </td>
+                        <td scope="col"><a href="{{ path("user_profile",{'slug':u.slug}) }}"> {{ u }}</a></td>
+                        <td scope="col"  class="d-lg-block d-md-none" style="max-width: 200px">
+                            {% for t in u.teams %}
+                                <div class="badge" style="background-color: rgb({{ t.color }})">
+                                    {{ t.name }}
+                                </div>
+                            {% endfor %}
+                            <a id="a{{ u.id }}" class="badge badge-dark addTeam" href="{{ path('api_user_addTeams',{'id':u.id}) }}">
+                                <i class="fas fa-plus"></i>
+                            </a>
+                        </td>
+                        <td scope="col" class="karma">
+                            {{ u.karma }}
+                        </td>
+
+                        <td scope="col" class="d-lg-table-cell">
+                            <input type="number" class="form-control mb-1" style="width: 150px" value="5">
+                            <a class=" btn btn-success mx-2 text-white point-change" href="{{ path('api_user_change_points',{'id':u.id}) }}"><i class="fas fa-angle-up"></i></a>
+                            <a class="btn btn-danger mx-2 text-white point-change" href="{{ path('api_user_change_points',{'id':u.id}) }}"><i class="fas fa-angle-down"></i></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div id ="addTeamModal" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Přidat do týmu</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="badgeSelection">
+                        {% for t in teams %}
+                            <div id = "{{ t.id }}" class="badge my-2 newBadget" style="background-color: rgb({{ t.color }})">
+                                {{ t.name }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div id='selectedBadges' class="border-top border-dark"></div>
+                </div>
+                <div class="modal-footer">
+                    <button id="addTeamModalSave" type="button" class="btn btn-primary">Uložit</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Zavřít</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

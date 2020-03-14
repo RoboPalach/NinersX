@@ -39,6 +39,7 @@ class ApiUserController extends AbstractController
             return new JsonResponse('You cant change another user',403);
         $user->setName($request->request->get('name'));
         $user->setSurname($request->request->get('surname'));
+        $user->setBio($request->request->get('bio'));
         $password = $request->request->get('password');
         if(!empty($password)){
             $user->setPassword($encoder->encodePassword($user, $password));

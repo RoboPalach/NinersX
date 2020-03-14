@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Přidělování bodů{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/user_list.js')}}"></script>
+{% endblock %}
+
+{% block body %}
+    <div class="vh-100 m-0 p-0" style="background-image: url('{{ asset('img/niners_sun.jpg')}}')">
+        <div class="row h-100">
+            <div class="col-6 my-auto mx-auto text-center shadow-lg p-3 bg-white rounded-lg">
+                <h1>Gratuluji, úspěšně jsi si vybral kód <i>{{ code.code }}</i>.</h1>
+                <h3>Dostal jsi:</h3>
+                <h4>
+                    {% if code.type==1 %}{{ code.item }}<i class="text-success far fa-star"></i> karma bodů{% endif %}
+                    {% if code.type==2 %}{{ code.item }}<i class=" text-warning fas fa-coins"></i> penízků{% endif %}
+                    {% if code.type==3 %}Not implemented yet{#TODO: Implement shopitem#}{% endif %}
+                </h4>
+                <a class="btn btn-primary" href="{{ path('user_profile') }}">Profil</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

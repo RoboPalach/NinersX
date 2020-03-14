@@ -7,6 +7,9 @@ easy_admin:
   entities:
     User:
       class: App\Entity\User
+      list:
+          actions:
+            - { name: 'Impersonalize',  template: 'security/imperson.html.twig' }
     Team:
       class: App\Entity\Team
     Course:
@@ -50,3 +53,5 @@ easy_admin:
       show:
         fields:
           - { property: 'previewImage.name', type: 'image', base_path: '/imagesRepository' }
+    Code:
+      class: App\Entity\BonusCode

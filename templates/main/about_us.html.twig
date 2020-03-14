@@ -1,0 +1,119 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset("css/landing-page.css") }}">
+{% endblock %}
+{% block title %}Niners{% endblock %}
+
+{% block body %}
+
+    <!-- Portfolio Section -->
+    <section class="page-section" id="">
+        <div class="container">
+            <h2 class="page-section-heading text-center text-uppercase text-primary">O autorech</h2>
+
+            <div class="row">
+                <div class="col-lg-4 ml-auto">
+                    <p>Jsem studenti Gymnázia Jana Palacha na Mělníku. Robotice se věnujeme ve volném čase hlavně na robotickém kroužku, který nás přivedl k Niners. K dispozici jsme měli Lego a Arduino.
+                        Lego Mindstorms se nám s věkem přestalo líbit (programovat ho v něčem normálním prostě nejde a kvalita senzorů, hlavně gyroskopu, není nejlepší). K Arduino musíme vždy připojovat ty samé věci a to se taky omrzí.
+                        Proto jsme se rozhodli pořídit si vlastní robotickou desku. Moc se nám líbili desky od <a href="https://robotikabrno.cz/robotarna" target="_blank">Robotárny Helceletovna</a>, ale jejich desky jsou velké, drahé a ne zrovna vhodné pro začátečníky.
+                        Tak jsme si navrhli vlastní desky.</p>
+                </div>
+                <div class="col-lg-4 mr-auto">
+                    <p class="lead"><img class="img img-fluid" src="https://via.placeholder.com/720x1080.png?text=Bohužel+nemáme+společnou+fotku.+Snad+přibyde+časem" alt="Společná fotka"> </p>
+                </div>
+            </div>
+
+
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="page-section bg-blue text-white mb-0" id="about">
+        <div class="container">
+
+            <!-- About Section Heading -->
+            <h2 class="page-section-heading text-center text-uppercase text-white">O robotech</h2>
+
+            <!-- Icon Divider -->
+            <div class="divider-custom divider-light">
+                <div class="divider-custom-line"></div>
+                <div class="divider-custom-icon">
+                    <i class="fas fa-star"></i>
+                </div>
+                <div class="divider-custom-line"></div>
+            </div>
+
+            <!-- About Section Content -->
+            <div class="row">
+                <div class="col-lg-4 ml-auto">
+                    <p class="lead">Niners mají hned spoustu výhod. Tito roboti nejsou určeni pouze pro jednu věkovou kategorii. Najde se v nich každý,
+                        od menších dětí, až po seniory. Je to proto, že jejich ovladatelnost je opravdu snadná a dají se lehce předělat na jednodušší a složitější modely. Pochopit a naučit se s nimi je velice lehké.</p>
+                </div>
+                <div class="col-lg-4 mr-auto">
+                    <p class="lead">Niners má možnost kombinace široké škály doplňků a vylepšení. Díky tomu mají i široké využití. Člověk zjistí, co je pro jaký úkol třeba
+                        a co je opravdu zbytečné. Celé to funguje na principu pokus omyl, který je v dnešní době velice zanedbávaný. Společnost nedává jedinci možnost chybovat,
+                        i přesto, že je to lidské. Touto metodou se člověk nejvíce naučí a pochopí všechny principy,  nutí ho to být kreativní a přemýšlet nad problémem.</p>
+                </div>
+            </div>
+
+            <!-- About Section Button -->
+            <div class="text-center mt-4">
+                <a class="btn btn-xl btn-outline-light" href="{{ path('app_register') }}">
+                    <i class="fas fa-play mr-2"></i> Začít
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="page-section bg-white text-white mb-0" id="about">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="card col-lg col-md-5 mx-lg-4 m-md-2">
+                    <img class="card-img-top rounded-circle p-3" src="{{ asset('img/knespl_rect.png') }}" alt="Card image cap">
+                    <div class="card-body text-center">
+                        <h3 class="text-primary">Martin <br>Knespl</h3>
+                        <p class="card-text">Design, 3D tisk </p>
+                        <a class="btn btn-outline-primary btn-social" href="https://www.facebook.com/profile.php?id=100008251950290">
+                            <i class="fab fa-fw fa-facebook-f"></i>
+                        </a>
+
+                        <a class="btn btn-outline-primary btn-social mx-1" href="https://instagram.com/knesplm?igshid=83193i2460na">
+                            <i class="fab fa-fw fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="card col-lg col-md-5 mx-lg-4 m-md-2">
+                    <img class="card-img-top rounded-circle p-3" src="{{ asset('img/roubova_rect.png') }}" alt="Card image cap">
+                    <div class="card-body text-center">
+                        <h3 class="text-primary">Jana <br>Roubová</h3>
+                        <p class="card-text">Didaktické materiály </p>
+                        <a class="btn btn-outline-primary btn-social mx-1" href="https://instagram.com/janaroubova?igshid=wgkn81mu1rai">
+                            <i class="fab fa-fw fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="card col-lg col-md-5 mx-lg-4 m-md-2">
+                    <img class="card-img-top rounded-circle p-3" src="{{asset('img/srytr_rect.png')}}" alt="Card image cap">
+                    <div class="card-body text-center">
+                        <h3 class="text-primary">Pavel <br>Šrytr</h3>
+                        <p class="card-text text-nowrap">Návrh DPS, programování</p>
+                        <a class="btn btn-outline-primary btn-social" href="https://github.com/pajasry">
+                            <i class="fab fa-fw fa-github"></i>
+                        </a>
+                        <a class="btn btn-outline-primary btn-social mx-1" href="https://www.instagram.com/srytrpavel/">
+                            <i class="fab fa-fw fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
+

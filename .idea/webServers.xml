@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="67dc12bb-b2fb-4c6f-ad08-35a33153e777" name="dev.niners.cz" url="http://241474.w74.wedos.net">
+        <fileTransfer host="241474.w74.wedos.net" port="21" rootFolder="/ww/subdom/dev">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+          <option name="port" value="21" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

@@ -9,31 +9,40 @@
 {% block body %}
     <div class="row min-vh-100 mt-5">
         <div class="col-lg-10  m-auto border-dark">
-            <div class="row mt-2">
-                <div class="col-3">
-                    <img src="{{ user.avatar }}" width="150" class="rounded-circle border border-gray">
-                </div>
-                <div class="col-6">
-                    <h2>{{ user }}</h2>
-                    <p>{{ user.bio }}</p>
-                </div>
-                <div class="col-3">
-                    <h2 class="display-4">{{ user.karma }}<i class="text-success far fa-star"></i><br></h2>
-                    <h2 class="display-4">{{ user.money }}<i class=" text-warning fas fa-coins"></i></h2>
-                </div>
-            </div>
-            <div class="row">
                 <div class="container">
+                    <div class="row my-2">
+                        <div class="col-3">
+                            <img src="{{ user.avatar }}" width="150" class=" img img-fluid rounded-circle border border-gray">
+                        </div>
+                        <div class="col-6">
+                            <h2>{{ user }}</h2>
+                            <p>{{ user.bio }}</p>
+                            <div class="d-inline">
+                                {% for team in user.teams %}
+                                    <span class="badge rounded-pill p-1" style="background-color: rgb({{ team.color }})">{{ team.name }}</span>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <h2 class="display-4">{{ user.karma }}<i class="text-success far fa-star"></i><br></h2>
+                            <h2 class="display-4">{{ user.money }}<i class=" text-warning fas fa-coins"></i></h2>
+                        </div>
+                    </div>
                     <ul class="nav nav-tabs">
-                        <li class=" nav-item"><a data-toggle="tab" class="nav-link active" href="#statistics">Statistika</a></li>
+                        <li class=" nav-item"><a data-toggle="tab" class="nav-link active" href="#data">Údaje</a></li>
+                        <li class=" nav-item"><a data-toggle="tab" class="nav-link" href="#statistics">Statistika</a></li>
                         <li class=" nav-item"><a data-toggle="tab" class="nav-link" href="#log">Log</a></li>
                         <li class=" nav-item"><a data-toggle="tab" class="nav-link" href="#inventory">Inventář</a></li>
                         <li class=" nav-item"><a data-toggle="tab" class="nav-link" href="#moodle">Moodle</a></li>
-                        <li class=" nav-item"><a data-toggle="tab" class="nav-link" href="#data">Údaje</a></li>
+
                     </ul>
 
+                    {% if (user.slug== app.user.slug or is_granted('ROLE_SUPER_ADMIN')) %}
                     <div class="tab-content">
-                        <div id="statistics" class="tab-pane active">
+                        <div id="data" class="tab-pane active">
+                            {{ include('user/profile_tabs/user_data.html.twig') }}
+                        </div>
+                        <div id="statistics" class="tab-pane fade">
                             <h3>Statistika</h3>
                             <img src="{{ asset("img/under_construction.png") }}" class="img img-fluid">
                             <div class="text-center display-4">Ve výstavbě</div>
@@ -53,35 +62,10 @@
                             <img src="{{ asset("img/under_construction.png") }}" class="img img-fluid">
                             <div class="text-center display-4">Ve výstavbě</div>
                         </div>
-                        <div id="data" class="tab-pane fade">
-                            <h3>Údaje</h3>
-                            <form id="userData" action="{{ path('api_user_update',{'id':user.id}) }}">
-                                <div class="row">
-                                    <div class="col m-1">
-                                        <input type="text" class="form-control" name="name" placeholder="Jméno" value="{{ user.name }}">
-                                    </div>
-                                    <div class="col m-1">
-                                        <input type="text" class="form-control"name="surname" placeholder="Příjmení" value="{{ user.surname }}">
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col">
-                                        <textarea  style="height: 100%" name="bio" class="form-control m-1">{{ user.bio }}</textarea>
-                                    </div>
-                                    <div class="col">
-                                        <input type="text" class="form-control m-1" name="email" value="{{ user.email }}" placeholder="Email" readonly>
-                                        <input type="password" class="form-control m-1" name="password" placeholder="Nové Heslo">
-                                        <input type="password" class="form-control m-1" name="passwordAgain" placeholder="Nové Heslo Znovu">
-                                        <div class="text-right">
-                                            <a id="save" class="btn btn-primary">Uložit</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
+
                     </div>
+                    {% endif %}
                 </div>
             </div>
-        </div>
     </div>
 {% endblock %}
